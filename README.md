@@ -1,16 +1,9 @@
 # ev_app
 
-A new Flutter project.
+App that shows ev data through bluetooth
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Current Plan
+1. Check for Bluetooth connectivity. If not prompt user to turn on bluetooth
+2. Check if the mac address is stored in shared prefrence
+3. If not scan and add the device to mac address
+4. Decode the characteristic and work on the UI.
