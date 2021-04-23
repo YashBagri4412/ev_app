@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 //Relative Imports
-import '../Providers/auth_provider.dart';
+import '../provider/auth_provider.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
