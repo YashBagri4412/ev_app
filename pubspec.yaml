@@ -30,6 +30,9 @@ dependencies:
   cupertino_icons: ^1.0.0
   provider:
   flutter_blue:
+  firebase_auth: 
+  google_fonts: 
+  google_sign_in: 
     
 
 dev_dependencies:
