@@ -7,6 +7,9 @@ import 'package:provider/provider.dart';
 import '../provider/bluetooth_provider.dart';
 
 class BluetoothStateChecker extends StatelessWidget {
+  //checks whether bluetooth is on or off
+  //haults the operation if off with permission access screen
+  //otherwise moves to bluetooth_scan_screen
   @override
   Widget build(BuildContext context) {
     final bluetoothProvider = Provider.of<BluetoothProvider>(context).blue;

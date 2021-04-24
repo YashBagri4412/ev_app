@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../provider/bluetooth_provider.dart';
 
 class BluetoothScanScreen extends StatelessWidget {
+  //screen where all available bluetoooth devices are seen and then connected
   @override
   Widget build(BuildContext context) {
     final scanProvider = Provider.of<BluetoothProvider>(context);
