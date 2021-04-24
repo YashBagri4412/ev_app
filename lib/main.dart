@@ -1,3 +1,4 @@
+import 'package:ev_app/widgets/bluetooth_state_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,7 +7,7 @@ import 'package:provider/provider.dart';
 //Relative imports
 import 'provider/auth_provider.dart';
 import 'screens/auth_screen.dart';
-import 'screens/login_screen.dart';
+import 'provider/bluetooth_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,8 +18,15 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AuthenticationFirebase(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthenticationFirebase>(
+          create: (_) => AuthenticationFirebase(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => BluetoothProvider(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -45,7 +53,7 @@ class MyApp extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (_, userSnapShot) {
             if (userSnapShot.hasData) {
-              return LoggedScreen();
+              return BluetoothStateChecker();
             }
             return AuthScreen();
           },

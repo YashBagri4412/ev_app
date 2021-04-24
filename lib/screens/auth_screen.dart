@@ -137,10 +137,6 @@ class _AuthScreenState extends State<AuthScreen> {
     } catch (e) {
       print(e);
     }
-
-    setState(() {
-      _progressReq = false;
-    });
   }
 
   @override
