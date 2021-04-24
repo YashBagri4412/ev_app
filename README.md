@@ -11,6 +11,6 @@ App that shows ev data through bluetooth
 ## Progress
 1. Authentication has been added
 2. Bluetooth connection checks have added, as soon as bluetooth is not available the device will stop showing the ev data ui 
-3. BluetoothScan have been implemented needs to be testes thoroughly.
+3. BluetoothScan have been implemented needs to be tested thoroughly.
 
 
