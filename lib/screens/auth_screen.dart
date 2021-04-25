@@ -174,6 +174,7 @@ class _AuthScreenState extends State<AuthScreen> {
     double heightOfContainer = _isLogin ? height * 0.68 : height * 0.80;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).primaryColorDark,
       body: _progressReq

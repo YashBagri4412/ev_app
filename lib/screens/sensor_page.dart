@@ -153,10 +153,12 @@ class _SensorPageState extends State<SensorPage> {
                                   children: <Widget>[
                                     Text('Current value from Sensor',
                                         style: TextStyle(fontSize: 14)),
-                                    Text('$currentValue',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 24))
+                                    Text(
+                                      '$currentValue',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 24),
+                                    )
                                   ],
                                 ),
                               ),
