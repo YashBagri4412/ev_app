@@ -123,56 +123,53 @@ class _SensorPageState extends State<SensorPage> {
           title: Text('Sensor value'),
         ),
         body: Container(
-            child: !isReady
-                ? Center(
-                    child: Text(
-                      "Waiting...",
-                      style: TextStyle(fontSize: 24, color: Colors.red),
-                    ),
-                  )
-                : Container(
-                    child: StreamBuilder<List<int>>(
-                      stream: stream,
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<int>> snapshot) {
-                        if (snapshot.hasError)
-                          return Text('Error: ${snapshot.error}');
+          child: !isReady
+              ? Center(
+                  child: Text(
+                    "Waiting...",
+                    style: TextStyle(fontSize: 24, color: Colors.red),
+                  ),
+                )
+              : Container(
+                  child: StreamBuilder<List<int>>(
+                    stream: stream,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<List<int>> snapshot) {
+                      if (snapshot.hasError)
+                        return Text('Error: ${snapshot.error}');
 
-                        if (snapshot.connectionState ==
-                            ConnectionState.active) {
-                          var currentValue = _dataParser(snapshot.data);
-                          traceDust.add(double.tryParse(currentValue) ?? 0);
+                      if (snapshot.connectionState == ConnectionState.active) {
+                        var currentValue = _dataParser(snapshot.data);
+                        traceDust.add(double.tryParse(currentValue) ?? 0);
 
-                          return Center(
-                              child: Column(
+                        return Center(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Expanded(
                                 flex: 1,
                                 child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text('Current value from Sensor',
-                                          style: TextStyle(fontSize: 14)),
-                                      Text('$currentValue',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 24))
-                                    ]),
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text('Current value from Sensor',
+                                        style: TextStyle(fontSize: 14)),
+                                    Text('$currentValue',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 24))
+                                  ],
+                                ),
                               ),
-/*
-                              Expanded(
-                                flex: 1,
-                                child: oscilloscope,
-                              )*/
                             ],
-                          ));
-                        } else {
-                          return Text('Check the stream');
-                        }
-                      },
-                    ),
-                  )),
+                          ),
+                        );
+                      } else {
+                        return Text('Check the stream');
+                      }
+                    },
+                  ),
+                ),
+        ),
       ),
     );
   }

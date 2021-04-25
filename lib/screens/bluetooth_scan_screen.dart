@@ -11,7 +11,7 @@ class BluetoothScanScreen extends StatelessWidget {
   //screen where all available bluetoooth devices are seen and then connected
   @override
   Widget build(BuildContext context) {
-    final scanProvider = Provider.of<BluetoothProvider>(context);
+    final scanProvider = Provider.of<BluetoothProvider>(context).blue;
     return Scaffold(
       appBar: AppBar(
         title: Text("Find Devices"),
@@ -25,13 +25,12 @@ class BluetoothScanScreen extends StatelessWidget {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () =>
-            scanProvider.blue.startScan(timeout: Duration(seconds: 4)),
+        onRefresh: () => scanProvider.startScan(timeout: Duration(seconds: 4)),
         child: SingleChildScrollView(
           child: Column(
             children: [
               StreamBuilder<List<ScanResult>>(
-                stream: FlutterBlue.instance.scanResults,
+                stream: scanProvider.scanResults,
                 initialData: [],
                 builder: (c, snapshot) => Column(
                   children: snapshot.data
@@ -53,71 +52,25 @@ class BluetoothScanScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: StreamBuilder<bool>(
-        stream: FlutterBlue.instance.isScanning,
+        stream: scanProvider.isScanning,
         initialData: false,
         builder: (c, snapshot) {
           if (snapshot.data) {
             return FloatingActionButton(
               child: Icon(Icons.stop),
-              onPressed: () => FlutterBlue.instance.stopScan(),
+              onPressed: () => scanProvider.stopScan(),
               backgroundColor: Colors.red,
             );
           } else {
             return FloatingActionButton(
-                child: Icon(Icons.search),
-                onPressed: () => FlutterBlue.instance
-                    .startScan(timeout: Duration(seconds: 4)));
+              child: Icon(Icons.search),
+              onPressed: () => scanProvider.startScan(
+                timeout: Duration(seconds: 4),
+              ),
+            );
           }
         },
       ),
     );
   }
 }
-
-/*
-      //body content
-      RefreshIndicator(
-        onRefresh: () =>
-            scanProvider.blue.startScan(timeout: Duration(seconds: 4)),
-        child: Column(
-          children: [
-            StreamBuilder<List<BluetoothDevice>>(
-              stream: Stream.periodic(Duration(seconds: 2))
-                  .asyncMap((_) => FlutterBlue.instance.connectedDevices),
-              initialData: [],
-              builder: (c, snapshot) {
-                print(snapshot.data);
-                return Column(
-                  children: snapshot.data
-                      .map((d) => ListTile(
-                            title: Text(d.name),
-                            subtitle: Text(d.id.toString()),
-                            trailing: StreamBuilder<BluetoothDeviceState>(
-                              stream: d.state,
-                              initialData: BluetoothDeviceState.disconnected,
-                              builder: (c, snapshot) {
-                                return Text(snapshot.data.toString());
-                              },
-                            ),
-                          ))
-                      .toList(),
-                );
-              },
-            ),
-            StreamBuilder<List<ScanResult>>(
-                stream: FlutterBlue.instance.scanResults,
-                initialData: [],
-                builder: (c, availableSnapshot) {
-                  print(availableSnapshot.data);
-                  return Column(
-                    children: availableSnapshot.data
-                        .map((r) => ListTile(
-                              leading: Text(r.device.toString()),
-                            ))
-                        .toList(),
-                  );
-                }),
-          ],
-        ),
-      ),
-      */

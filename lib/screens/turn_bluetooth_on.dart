@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PermissionAccessScreen extends StatelessWidget {
+class TunrBluetoothOn extends StatelessWidget {
   //just displays the info that bluetooth is off...
   @override
   Widget build(BuildContext context) {
