@@ -142,6 +142,7 @@ class _SensorPageState extends State<SensorPage> {
                             ConnectionState.active) {
                           var currentValue = _dataParser(snapshot.data);
                           traceDust.add(double.tryParse(currentValue) ?? 0);
+                          //print(currentValue);
 
                           return Center(
                               child: Column(
