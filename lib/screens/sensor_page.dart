@@ -12,6 +12,7 @@ class SensorPage extends StatefulWidget {
 }
 
 class _SensorPageState extends State<SensorPage> {
+  //Changes these
   final String sId = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
   final String cId = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
   bool isReady;
@@ -111,6 +112,7 @@ class _SensorPageState extends State<SensorPage> {
   }
 
   String _dataParser(List<int> dataFromDevice) {
+    print("Data from device : $dataFromDevice");
     return utf8.decode(dataFromDevice);
   }
 
