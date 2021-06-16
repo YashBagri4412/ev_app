@@ -1,10 +1,11 @@
-import 'package:ev_app/screens/bluetooth_scan_screen.dart';
-import 'package:ev_app/screens/permission_access.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:provider/provider.dart';
+
 //Relative Import
 import '../provider/bluetooth_provider.dart';
+import '../screens/bluetooth_scan_screen.dart';
+import 'package:ev_app/screens/permission_access.dart';
 
 class BluetoothStateChecker extends StatelessWidget {
   @override

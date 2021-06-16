@@ -1,3 +1,4 @@
+import 'package:ev_app/widgets/Tabs_widget.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,18 +6,23 @@ import 'package:provider/provider.dart';
 //Relative Imports
 import '../provider/bluetooth_provider.dart';
 import '../widgets/Scan_Result_Tile.dart';
-import './sensor_page.dart';
 
 class BluetoothScanScreen extends StatelessWidget {
+  static const routeName = '/BluetoothScanScreen';
   @override
   Widget build(BuildContext context) {
     final scanProvider = Provider.of<BluetoothProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Find Devices"),
+        title: Text(
+          "Find Devices",
+          style: Theme.of(context).textTheme.headline6,
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: Icon(
+              Icons.logout,
+            ),
             onPressed: () {
               FirebaseAuth.instance.signOut();
             },
@@ -37,11 +43,20 @@ class BluetoothScanScreen extends StatelessWidget {
                       .map(
                         (r) => ScanResultTile(
                           result: r,
-                          onTap: () => Navigator.of(context)
+                          onTap: () => Navigator.of(context).pushNamed(
+                              TabsScreen.routeName,
+                              arguments: r.device),
+
+/*
+                          Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
                             r.device.connect();
-                            return SensorPage(device: r.device);
-                          })),
+                            return InfoPage(
+                              device: r.device,
+                            );
+                          }
+                          )
+                          ),*/
                         ),
                       )
                       .toList(),
@@ -63,7 +78,10 @@ class BluetoothScanScreen extends StatelessWidget {
             );
           } else {
             return FloatingActionButton(
-                child: Icon(Icons.search),
+                child: Icon(
+                  Icons.search,
+                  color: Color(0xff020227),
+                ),
                 onPressed: () => FlutterBlue.instance
                     .startScan(timeout: Duration(seconds: 4)));
           }

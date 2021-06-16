@@ -24,27 +24,30 @@ class ScanResultTile extends StatelessWidget {
         ],
       );
     } else {
-      return Text(result.device.id.toString());
+      return Text(
+        result.device.id.toString(),
+        style: Theme.of(context).textTheme.headline6,
+      );
     }
   }
 
   Widget _buildAdvRow(BuildContext context, String title, String value) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(title, style: Theme.of(context).textTheme.caption),
+          Text(
+            title,
+            style: Theme.of(context).textTheme.caption,
+          ),
           SizedBox(
             width: 12.0,
           ),
           Expanded(
             child: Text(
               value,
-              style: Theme.of(context)
-                  .textTheme
-                  .caption
-                  .apply(color: Colors.black),
+              style: Theme.of(context).textTheme.caption,
               softWrap: true,
             ),
           ),
@@ -85,11 +88,15 @@ class ScanResultTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: _buildTitle(context),
-      leading: Text(result.rssi.toString()),
+      leading: Text(
+        result.rssi.toString(),
+        style: Theme.of(context).textTheme.caption,
+        softWrap: true,
+      ),
       trailing: RaisedButton(
         child: Text('CONNECT'),
-        color: Colors.black,
-        textColor: Colors.white,
+        color: Colors.white,
+        textColor: Color(0xff020227),
         onPressed: (result.advertisementData.connectable) ? onTap : null,
       ),
       children: <Widget>[

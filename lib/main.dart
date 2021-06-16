@@ -1,3 +1,9 @@
+import 'package:ev_app/screens/bluetooth_scan_screen.dart';
+import 'package:ev_app/screens/dashboard_screen.dart';
+import 'package:ev_app/screens/info_screen.dart';
+import 'package:ev_app/screens/permission_access.dart';
+import 'package:ev_app/screens/profile_screen.dart';
+import 'package:ev_app/widgets/Tabs_widget.dart';
 import 'package:ev_app/widgets/bluetooth_state_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,25 +36,35 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Colors.black,
           accentColor: Colors.white,
+          canvasColor: Color(0xff020227).withBlue(40),
           textTheme: TextTheme(
-            bodyText1: GoogleFonts.openSans(),
+            bodyText1: GoogleFonts.openSans(
+              color: Colors.white,
+            ),
             headline3: GoogleFonts.openSans(
               fontWeight: FontWeight.w900,
               fontSize: 30,
-              color: Colors.black87,
+              color: Colors.white,
             ),
             headline6: GoogleFonts.openSans(
               color: Colors.white,
               fontWeight: FontWeight.w700,
             ),
             subtitle1: GoogleFonts.openSans(
-              color: Colors.black54,
+              color: Colors.white,
             ),
-            caption: GoogleFonts.openSans(),
+            caption: GoogleFonts.openSans(
+              color: Colors.white,
+            ),
           ),
         ),
+        onUnknownRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (ctx) => BluetoothScanScreen(),
+          );
+        },
         home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (_, userSnapShot) {
@@ -58,7 +74,15 @@ class MyApp extends StatelessWidget {
             return AuthScreen();
           },
         ),
-        debugShowCheckedModeBanner: false,
+        //debugShowCheckedModeBanner: false,
+        routes: {
+          InfoPage.routeName: (ctx) => InfoPage(),
+          BluetoothScanScreen.routeName: (ctx) => BluetoothScanScreen(),
+          ProfileScreen.routeName: (ctx) => ProfileScreen(),
+          DashboardScreen.routeName: (ctx) => DashboardScreen(),
+          PermissionAccessScreen.routeName: (ctx) => PermissionAccessScreen(),
+          TabsScreen.routeName: (ctx) => TabsScreen(),
+        },
       ),
     );
   }

@@ -154,14 +154,16 @@ class _SensorPageState extends State<SensorPage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Text('Current value from Sensor',
-                                          style: TextStyle(fontSize: 14)),
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white)),
                                       Text('$currentValue',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 24))
                                     ]),
                               ),
-/*
+                              /*
                               Expanded(
                                 flex: 1,
                                 child: oscilloscope,
