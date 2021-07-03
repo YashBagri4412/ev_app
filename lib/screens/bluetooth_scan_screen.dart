@@ -40,6 +40,7 @@ class BluetoothScanScreen extends StatelessWidget {
                           onTap: () => Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
                             r.device.connect();
+                            print(r.device.name);
                             return SensorPage(device: r.device);
                           })),
                         ),
