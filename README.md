@@ -10,7 +10,7 @@ App that shows ev data through bluetooth
 
 ## Progress
 1. Authentication has been added
-2. Bluetooth Scanning Feature has been added.
+2. Bluetooth scanning Feature has been added.
 3. BluetoothScan have been implemented needs to be tested thoroughly.
 
 ## What's Remaining
