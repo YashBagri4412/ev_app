@@ -1,15 +1,14 @@
-import 'package:ev_app/screens/bluetooth_scan_screen.dart';
-import 'package:ev_app/screens/turn_bluetooth_on.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:provider/provider.dart';
+
+import 'package:ui_app/screens/info_page.dart';
+
 //Relative Import
 import '../provider/bluetooth_provider.dart';
+import '../screens/permission_access.dart';
 
 class BluetoothStateChecker extends StatelessWidget {
-  //checks whether bluetooth is on or off
-  //haults the operation if off with permission access screen
-  //otherwise moves to bluetooth_scan_screen
   @override
   Widget build(BuildContext context) {
     final bluetoothProvider = Provider.of<BluetoothProvider>(context).blue;
@@ -25,9 +24,10 @@ class BluetoothStateChecker extends StatelessWidget {
           );
         }
         if (stateSnapshot.data == BluetoothState.on) {
-          return BluetoothScanScreen();
+          return InfoScreen();
+          //return BluetoothScanScreen();
         } else {
-          return TunrBluetoothOn();
+          return PermissionAccessScreen();
         }
       },
       stream: bluetoothProvider.state,

@@ -1,22 +1,16 @@
-# ev_app
+# ui_app
 
-App that shows ev data through bluetooth
+A new Flutter project.
 
-## Current Plan
-1. Check for Bluetooth connectivity. If not prompt user to turn on bluetooth
-2. Check if the mac address is stored in shared preference.
-3. If not scan and add the device to shared preference folder of the app.
-4. Decode the characteristic and work on the UI.
+## Getting Started
 
-## Progress
-1. Authentication has been added
-2. Bluetooth scanning Feature has been added.
-3. BluetoothScan have been implemented needs to be tested thoroughly.
+This project is a starting point for a Flutter application.
 
-## What's Remaining
-1. Reciving vehical data through bluetooth and observing the recieved characteristics.
-3. Decoding the recieved characteristic and saving them in app state.
-4. Creating the UI and updating it according to app state.
-5. Sending data to cloud by using the end points provided by the company.
+A few resources to get you started if this is your first Flutter project:
 
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

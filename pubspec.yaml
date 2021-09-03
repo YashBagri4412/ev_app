@@ -1,4 +1,4 @@
-name: ev_app
+name: ui_app
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -28,13 +28,12 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-  provider:
+  google_fonts:
+  kdgaugeview:
+  fl_chart:
+  web_socket_channel:
   flutter_blue:
-  firebase_auth: 
-  google_fonts: 
-  google_sign_in: 
-  shared_preferences:  
-
+  provider:
 dev_dependencies:
   flutter_test:
     sdk: flutter

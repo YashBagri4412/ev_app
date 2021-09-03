@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TunrBluetoothOn extends StatelessWidget {
-  //just displays the info that bluetooth is off...
+class PermissionAccessScreen extends StatelessWidget {
+  static const routeName = '/PermissionAccessScreen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +44,11 @@ class TunrBluetoothOn extends StatelessWidget {
           Spacer(
             flex: 3,
           ),
+          Icon(
+            Icons.bluetooth_disabled,
+            color: Colors.grey[600],
+            size: 100,
+          ),
           // Container(
           //   padding: EdgeInsets.only(
           //     left: 20,
@@ -84,6 +89,9 @@ class TunrBluetoothOn extends StatelessWidget {
           // SizedBox(
           //   height: 12,
           // ),
+          Spacer(
+            flex: 3,
+          ),
         ],
       ),
     );
