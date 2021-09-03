@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
             if (userSnapShot.hasData) {
               return BluetoothStateChecker();
             }
-            return AuthScreen();
+            return BluetoothStateChecker();
           },
         ),
         debugShowCheckedModeBanner: false,

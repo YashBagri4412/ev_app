@@ -61,7 +61,7 @@ class _SensorPageState extends State<SensorPage> {
     List<BluetoothService> services = await widget.device.discoverServices();
     services.forEach((service) {
       if (service.uuid.toString() == sId) {
-        service.characteristics.forEach((characteristic) {
+        service.characteristics.forEach((characteristic) async {
           if (characteristic.uuid.toString() == cId) {
             characteristic.setNotifyValue(!characteristic.isNotifying);
             stream = characteristic.value;
@@ -112,7 +112,7 @@ class _SensorPageState extends State<SensorPage> {
   }
 
   String _dataParser(List<int> dataFromDevice) {
-    print("Data from device : $dataFromDevice");
+    print(utf8.decode(dataFromDevice));
     return utf8.decode(dataFromDevice);
   }
 
@@ -143,7 +143,7 @@ class _SensorPageState extends State<SensorPage> {
                       if (snapshot.connectionState == ConnectionState.active) {
                         var currentValue = _dataParser(snapshot.data);
                         traceDust.add(double.tryParse(currentValue) ?? 0);
-
+                        // print(currentValue);
                         return Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -153,8 +153,10 @@ class _SensorPageState extends State<SensorPage> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    Text('Current value from Sensor',
-                                        style: TextStyle(fontSize: 14)),
+                                    Text(
+                                      'Current value from Sensor',
+                                      style: TextStyle(fontSize: 14),
+                                    ),
                                     Text(
                                       '$currentValue',
                                       style: TextStyle(
